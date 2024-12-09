@@ -1,0 +1,33 @@
+# Имя workflow
+name: Python Tests
+
+# События, при которых будет активироваться workflow
+on: 
+  # Активируем по событиям push и pull request
+  push:
+    branches: [ "main" ]  # Ветка, по которой будет запущен workflow
+  pull_request:
+    branches: [ "main" ]  # Ветка, по которой будет запущен при создании pull request
+
+# Определение рабочих задач
+jobs:
+  test:  # Имя задачи - test
+    runs-on: ubuntu-latest  # Операционная система, на которой будет выполняться задача
+
+    steps:  # Шаги, которые будут выполняться в задаче
+      - name: Checkout code  # Название шага
+        uses: actions/checkout@v2  # Используем встроенное действие для загрузки кода из репозитория
+
+      - name: Set up Python  # Название шага
+        uses: actions/setup-python@v2  # Используем действие для настройки Python
+        with:
+          python-version: '3.8'  # Указываем, какую версию Python установить
+
+      - name: Install dependencies  # Название шага
+        run: |  # Команды, которые будут выполнены
+          python -m pip install --upgrade pip  # Устанавливаем последнюю версию pip
+          pip install -r requirements.txt  # Устанавливаем зависимости из файла requirements.txt
+
+      - name: Run tests  # Название шага
+        run: |  # Команды, которые будут выполнены
+          python -m unittest discover  # Запускаем тесты в проекте
