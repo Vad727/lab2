@@ -2,9 +2,11 @@ name: Python Tests
 
 on: 
   push:
-    branches: [ "master" ]
+
+    branches: [ "master", "development" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "development" ]
+
 
 jobs:
   test:
@@ -26,4 +28,5 @@ jobs:
 
       - name: Run tests  
         run: |  
+
           python -m unittest discover 

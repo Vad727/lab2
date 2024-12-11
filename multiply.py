@@ -7,3 +7,6 @@ if __name__ == "__main__":
     number3 = input("Введите третье число: ")
     number_product = multiply_numbers(number1, number2, number3)
     print(number_product)
+
+def sum_numbers(num1,num2):
+    return int(num1) + int(num2)
